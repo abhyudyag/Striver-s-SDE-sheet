@@ -1,0 +1,28 @@
+import java.util.*;
+public class Solution {
+    public static List<String> findPermutations(String s) {
+        // Write your code here.
+        List<String> ans = new ArrayList<>();
+        answer(ans,s,0);
+        return ans;
+    }
+    static void answer(List<String> ans, String s, int pos){
+        if(pos >= s.length()){
+        ans.add(new String(s));
+        return;
+        }
+        for(int i=pos;i<s.length();i++){
+            s=swap(s,pos,i);
+            answer(ans,s,pos+1);
+            s=swap(s,pos,i);
+        }
+    }
+    static String swap(String s, int a, int b){
+        char ch1 = s.charAt(a);
+        char ch2 = s.charAt(b);
+        StringBuilder str= new StringBuilder(s);
+        str.setCharAt(a,ch2);
+        str.setCharAt(b,ch1);
+        return str.toString();
+    }
+}
