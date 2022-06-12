@@ -1,0 +1,26 @@
+import java.util.* ;
+import java.io.*; 
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class Solution 
+{
+	public static ArrayList<Integer> nextPermutation(ArrayList<Integer> permutation) 
+	{
+		// Write your code here.
+        int p = permutation.size()-1;
+        while(p>0 && (permutation.get(p) <= permutation.get(p-1)))
+            p--;
+        if(p==0){
+            Collections.sort(permutation);
+            return permutation;
+        }
+        int q = p;
+        while(q<permutation.size() && permutation.get(q)>permutation.get(p-1))
+            q++;
+        q--;
+        Collections.swap(permutation,q,p-1);
+        Collections.sort(permutation.subList(p,permutation.size()));
+        return permutation;
+    }
+}
